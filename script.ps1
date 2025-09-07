@@ -17,7 +17,6 @@ $headers = @{
     'Content-Type' = 'application/json'
 }
 
-$sprint
 $n = "Sprint Summary Dashboard"
 $q = "SELECT [System.Id], [System.Title], [System.State], [Microsoft.VSTS.Scheduling.StoryPoints] FROM WorkItems WHERE [System.IterationPath] UNDER 'BAU\Release 2025\Q3 2025\Sprint 1'"
 $n = 'Current Sprint Baseline Items'

@@ -14,18 +14,34 @@ $headers = @{
 
 # Get initial sprint items (created before sprint start)
 $initialItemsQuery = @"
-SELECT [System.Id], [Microsoft.VSTS.Scheduling.StoryPoints]
+SELECT [System.Id],
+       [System.Title],
+       [System.WorkItemType],
+       [System.State],
+       [Microsoft.VSTS.Scheduling.StoryPoints],
+       [System.IterationPath],
+       [Custom.AddedToIterationDate]
 FROM WorkItems
-WHERE [System.IterationPath] = '$sprintPath'
+WHERE [System.IterationPath] = @CurrentIteration('[$project]\$teamName')
   AND [Custom.AddedToIterationDate] <= '$($sprintStartDate.ToString('yyyy-MM-dd'))'
+  AND [System.WorkItemType] IN ('User Story', 'Issue', 'Support Request', 'Bug')
+ORDER BY [System.WorkItemType], [System.Id]
 "@
 
 # Get items added during sprint
 $addedItemsQuery = @"
-SELECT [System.Id], [Microsoft.VSTS.Scheduling.StoryPoints]
-FROM WorkItems  
-WHERE [System.IterationPath] = '$sprintPath'
+SELECT [System.Id],
+       [System.Title],
+       [System.WorkItemType],
+       [System.State],
+       [Microsoft.VSTS.Scheduling.StoryPoints],
+       [System.IterationPath],
+       [Custom.AddedToIterationDate]
+FROM WorkItems
+WHERE [System.IterationPath] = @CurrentIteration('[$project]\$teamName')
   AND [Custom.AddedToIterationDate] > '$($sprintStartDate.ToString('yyyy-MM-dd'))'
+  AND [System.WorkItemType] IN ('User Story', 'Issue', 'Support Request', 'Bug')
+ORDER BY [Custom.AddedToIterationDate], [System.WorkItemType]
 "@
 
 # Execute queries and get work item details
@@ -50,8 +66,10 @@ if ($addedItemsResult.workItems.Count -gt 0) {
 
 # Calculate scope creep percentage using Story Points (Agile process)
 # Filter for User Stories and sum their Story Points
-$initialStoryPoints = ($initialItems | Where-Object { $_.fields.'System.WorkItemType' -eq 'User Story' } | ForEach-Object { $_.fields.'Microsoft.VSTS.Scheduling.StoryPoints' } | Where-Object { $_ -ne $null } | Measure-Object -Sum).Sum
-$addedStoryPoints = ($addedItems | Where-Object { $_.fields.'System.WorkItemType' -eq 'User Story' } | ForEach-Object { $_.fields.'Microsoft.VSTS.Scheduling.StoryPoints' } | Where-Object { $_ -ne $null } | Measure-Object -Sum).Sum
+# $initialStoryPoints = ($initialItems | Where-Object { $_.fields.'System.WorkItemType' -eq 'User Story' } | ForEach-Object { $_.fields.'Microsoft.VSTS.Scheduling.StoryPoints' } | Where-Object { $_ -ne $null } | Measure-Object -Sum).Sum
+# $addedStoryPoints = ($addedItems | Where-Object { $_.fields.'System.WorkItemType' -eq 'User Story' } | ForEach-Object { $_.fields.'Microsoft.VSTS.Scheduling.StoryPoints' } | Where-Object { $_ -ne $null } | Measure-Object -Sum).Sum
+$initialStoryPoints = ($initialItems | ForEach-Object { $_.fields.'Microsoft.VSTS.Scheduling.StoryPoints' } | Where-Object { $_ -ne $null } | Measure-Object -Sum).Sum
+$addedStoryPoints = ($addedItems  | ForEach-Object { $_.fields.'Microsoft.VSTS.Scheduling.StoryPoints' } | Where-Object { $_ -ne $null } | Measure-Object -Sum).Sum
 
 # Handle null values
 if ($null -eq $initialStoryPoints) { $initialStoryPoints = 0 }
