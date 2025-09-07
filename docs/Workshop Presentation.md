@@ -73,7 +73,7 @@
 ## Exercise: Agile Mindset Assessment
 **Time: 15 minutes**
 
-Rate your team's current maturity (1-5 scale):
+Rate your team's current maturity (1-5 scale, with 1 the lowest, 5 the highest):
 - [ ] We have clear work visibility
 - [ ] We deliver value consistently
 - [ ] We respond well to change
