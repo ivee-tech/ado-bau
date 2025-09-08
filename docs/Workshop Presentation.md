@@ -913,10 +913,47 @@ Thank you for participating in the Developer Velocity Planning Workshop!
 - "The Lean Startup" by Eric Ries
 
 ## Online Resources
-- Scrum.org
+- Scrum Org
+https://scrum.org
+
 - Agile Alliance
+https://www.agilealliance.org
+
 - Azure DevOps Documentation
+https://learn.microsoft.com/en-us/azure/devops/
+
 - Power BI Learning Resources
+https://learn.microsoft.com/en-us/power-bi/
+
+- Developer Velocity Planning Workshop repo
+https://github.com/ivee-tech/ado-bau
+
+- Workshop Presentation file:
+https://github.com/ivee-tech/ado-bau/blob/main/docs/Workshop%20Presentation.md
+
+- User Story Templates and Examples
+https://github.com/ivee-tech/ado-bau/blob/main/docs/User%20Story%20Templates%20and%20Examples.md
+
+- BAU example project
+https://dev.azure.com/ZipZappAus/BAU
+
+- Azure DevOps REST API
+https://learn.microsoft.com/en-us/rest/api/azure/devops/?view=azure-devops-rest-7.2
+
+- Connect to Azure DevOps using OData queries
+https://learn.microsoft.com/en-us/azure/devops/report/powerbi/odataquery-connect?view=azure-devops
+
+- Extend Analytics with OData
+https://docs.microsoft.com/en-us/azure/devops/report/extend-analytics/?view=azure-devops
+
+- Analytics Model
+https://learn.microsoft.com/en-us/azure/devops/report/extend-analytics/data-model-analytics-service
+
+- Change Management Adoption Strategy
+https://github.com/ivee-tech/ado-bau/blob/main/docs/Change%20Management%20Strategy%20Document.md
+
+- Azure DevOps REST API Authentication using OAuth and Entra ID
+https://learn.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/oauth?view=azure-devops
 
 ## Training Opportunities
 - Certified ScrumMaster (CSM)
