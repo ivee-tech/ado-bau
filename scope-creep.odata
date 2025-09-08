@@ -28,9 +28,9 @@ https://analytics.dev.azure.com/ZipZappAus/BAU/_odata/v4.0-preview/WorkItemSnaps
     filter(WorkItemType in ('User Story', 'Issue', 'Support Request', 'Bug'))/
 	filter(not(State in ('Resolved', 'Closed')))/
 	filter(DateValue ge Iteration/StartDate and DateValue le Iteration/EndDate)/
-    filter(Custom_AddedToIterationDate le 2025-09-01Z)
+    filter(Custom_AddedToIterationDate le Iteration/StartDate)
 // one line
-https://analytics.dev.azure.com/ZipZappAus/BAU/_odata/v4.0-preview/WorkItemSnapshot?%24apply=filter%28Iteration%2FTeams%2Fany%28t%3A+t%2FTeamName+eq+%27Velocity+Crew%27%29%29%2F+filter%28Iteration%2FIterationName+eq+%27Sprint+1%27%29%2F+filter%28WorkItemType+in+%28%27User+Story%27%2C+%27Issue%27%2C+%27Support+Request%27%2C+%27Bug%27%29%29%2F+filter%28not%28State+in+%28%27Resolved%27%2C+%27Closed%27%29%29%29%2F+filter%28DateValue+ge+Iteration%2FStartDate+and+DateValue+le+Iteration%2FEndDate%29%2F+filter%28Custom_AddedToIterationDate+le+2025-09-01Z%29
+https://analytics.dev.azure.com/ZipZappAus/BAU/_odata/v4.0-preview/WorkItemSnapshot?%24apply=filter%28Iteration%2FTeams%2Fany%28t%3A+t%2FTeamName+eq+%27Velocity+Crew%27%29%29%2F+filter%28Iteration%2FIterationName+eq+%27Sprint+1%27%29%2F+filter%28WorkItemType+in+%28%27User+Story%27%2C+%27Issue%27%2C+%27Support+Request%27%2C+%27Bug%27%29%29%2F+filter%28not%28State+in+%28%27Resolved%27%2C+%27Closed%27%29%29%29%2F+filter%28DateValue+ge+Iteration%2FStartDate+and+DateValue+le+Iteration%2FEndDate%29%2F+filter%28Custom_AddedToIterationDate+le+Iteration%2FStartDate%29
 // Query 2: Scope Creep Items (Added During Sprint)
 https://analytics.dev.azure.com/ZipZappAus/BAU/_odata/v4.0-preview/WorkItemSnapshot?$apply=
     filter(Iteration/Teams/any(t: t/TeamName eq 'Velocity Crew'))/
@@ -38,6 +38,6 @@ https://analytics.dev.azure.com/ZipZappAus/BAU/_odata/v4.0-preview/WorkItemSnaps
     filter(WorkItemType in ('User Story', 'Issue', 'Support Request', 'Bug'))/
 	filter(not(State in ('Resolved', 'Closed')))/
 	filter(DateValue ge Iteration/StartDate and DateValue le Iteration/EndDate)/
-    filter(Custom_AddedToIterationDate gt 2025-09-01Z)
+    filter(Custom_AddedToIterationDate gt Iteration/StartDate)
 // one line
-https://analytics.dev.azure.com/ZipZappAus/BAU/_odata/v4.0-preview/WorkItemSnapshot?%24apply=filter%28Iteration%2FTeams%2Fany%28t%3A+t%2FTeamName+eq+%27Velocity+Crew%27%29%29%2F+filter%28Iteration%2FIterationName+eq+%27Sprint+1%27%29%2F+filter%28WorkItemType+in+%28%27User+Story%27%2C+%27Issue%27%2C+%27Support+Request%27%2C+%27Bug%27%29%29%2F+filter%28not%28State+in+%28%27Resolved%27%2C+%27Closed%27%29%29%29%2F+filter%28DateValue+ge+Iteration%2FStartDate+and+DateValue+le+Iteration%2FEndDate%29%2F+filter%28Custom_AddedToIterationDate+gt+2025-09-01Z%29
+https://analytics.dev.azure.com/ZipZappAus/BAU/_odata/v4.0-preview/WorkItemSnapshot?%24apply=filter%28Iteration%2FTeams%2Fany%28t%3A+t%2FTeamName+eq+%27Velocity+Crew%27%29%29%2F+filter%28Iteration%2FIterationName+eq+%27Sprint+1%27%29%2F+filter%28WorkItemType+in+%28%27User+Story%27%2C+%27Issue%27%2C+%27Support+Request%27%2C+%27Bug%27%29%29%2F+filter%28not%28State+in+%28%27Resolved%27%2C+%27Closed%27%29%29%29%2F+filter%28DateValue+ge+Iteration%2FStartDate+and+DateValue+le+Iteration%2FEndDate%29%2F+filter%28Custom_AddedToIterationDate+gt+Iteration%2FStartDate%29
